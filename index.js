@@ -29,11 +29,11 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true}))
 
-app.get('/', async (request, res) => {
+app.post('/', async (request, res) => {
 
     addOrUpdateFileCollection(DOCTORS, '5', {
         name: 'vasia',
-        surname: 'Zhuk',
+        surname: 'puk',
         age: 26,
     })
 
