@@ -42,9 +42,28 @@ app.get('/', async (request, res) => {
     })
 })
 
+app.post('/add-doctor', async (request, res) => {
+    const name = request.body.name
+    const surname = request.body.surname
+    const age = request.body.age
+
+    addOrUpdateFileCollection(DOCTORS, (Math.random() * 11).toString(), {
+        name,
+        surname,
+        age
+    })
+
+    res.json({
+        success: true,
+        message: 'okey'
+    })
+})
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
     console.log('Express server listening on port', port)
 });
+
+
+
 
