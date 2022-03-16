@@ -47,7 +47,7 @@ app.post('/add-doctor', async (request, res) => {
     const surname = request.body.surname
     const age = request.body.age
 
-    addOrUpdateFileCollection(DOCTORS, (Math.random() * 11).toString(), {
+    addOrUpdateFileCollection(DOCTORS, Math.round(Math.random() * 111).toString(), {
         name,
         surname,
         age
