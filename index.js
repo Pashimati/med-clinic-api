@@ -48,9 +48,9 @@ app.post('/add-doctor', async (request, res) => {
     const age = request.body.age
 
     addOrUpdateFileCollection(DOCTORS, '1000', {
-        name,
-        surname,
-        age
+        name: name,
+        surname: surname,
+        age: age,
     })
 
     res.json({
