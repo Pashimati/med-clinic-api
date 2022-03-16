@@ -29,18 +29,18 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true}))
 
-// app.get('/', async (request, res) => {
-//
-//     addOrUpdateFileCollection(DOCTORS, '5', {
-//         name: 'Vadim',
-//         surname: 'Zhuk',
-//         age: 26,
-//     })
-//
-//     res.json({
-//         success: true
-//     })
-// })
+app.get('/', async (request, res) => {
+
+    addOrUpdateFileCollection(DOCTORS, '5', {
+        name: 'vasia',
+        surname: 'Zhuk',
+        age: 26,
+    })
+
+    res.json({
+        success: true
+    })
+})
 
 app.get('/add-doctor', async (request, res) => {
     const name = request.body.name
