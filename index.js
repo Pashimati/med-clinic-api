@@ -9,27 +9,25 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+
+    // authorized headers for preflight requests
+    // https://developer.mozilla.org/en-US/docs/Glossary/preflight_request
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+
+    app.options('*', (req, res) => {
+        // allowed XHR methods
+        res.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
+        res.send();
+    });
+});
+
+
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true}))
-
-
-app.use(function (req, res, next) {
-
-    res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-});
-
 
 app.get('/', async (request, res) => {
 
