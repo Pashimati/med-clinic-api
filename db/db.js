@@ -3,6 +3,8 @@ const {initializeApp} = require("firebase/app");
 const {getFirestore} = require("firebase/firestore")
 const { doc, setDoc, collection, deleteDoc, getDoc } = require("firebase/firestore");
 
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 

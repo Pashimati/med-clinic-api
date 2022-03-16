@@ -14,9 +14,34 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true}))
 
 
+app.use(function (req, res, next) {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    // Pass to next layer of middleware
+});
+
+
+
+
 app.get('/', async (request, res) => {
 
-    deleteFileCollection(DOCTORS, 'hgfd')
+    addOrUpdateFileCollection(DOCTORS, '1', {
+        name: 'Vadim',
+        surname: 'Zhuk',
+        age: 26,
+    })
 
     res.json({
         success: true
@@ -26,7 +51,6 @@ app.get('/', async (request, res) => {
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
-    // console.log( getFileCollection('doctors', 'two'))
     console.log('Express server listening on port', port)
 });
 
