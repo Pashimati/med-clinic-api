@@ -23,7 +23,7 @@ app.use(function(req, res, next) {
 });
 
 
-app.post('/', jsonParser, async (request, res) => {
+app.post('/add-doctor', jsonParser, async (request, res) => {
     const name = request.body.name
     const surname = request.body.surname
     const age = request.body.age
