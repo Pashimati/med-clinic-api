@@ -28,10 +28,10 @@ app.post('/add-doctor', jsonParser, async (request, res) => {
     const surname = request.body.surname
     const age = request.body.age
 
-    addOrUpdateFileCollection(DOCTORS, '4444', {
+    addOrUpdateFileCollection(DOCTORS, '3', {
         name: 'pasha',
         surname: 'surname',
-        age: 21,
+        age: 28,
 
     })
     console.log(request.body)
