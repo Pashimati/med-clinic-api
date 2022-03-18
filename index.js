@@ -42,9 +42,20 @@ app.post('/add-doctor', jsonParser, async (request, res) => {
     })
 })
 
-app.delete('/delete-doctor', jsonParser, async (request, res) => {
+// app.delete('/delete-doctor', jsonParser, async (request, res) => {
+//
+//     deleteFileCollection(DOCTORS, '5')
+//     console.log(request.body)
+//
+//     res.json({
+//         success: true,
+//         message: 'okey'
+//     })
+// })
 
-    deleteFileCollection(DOCTORS, '5')
+app.get('/read-doctor', jsonParser, async (request, res) => {
+
+    deleteFileCollection(DOCTORS, '1000')
     console.log(request.body)
 
     res.json({
@@ -52,7 +63,6 @@ app.delete('/delete-doctor', jsonParser, async (request, res) => {
         message: 'okey'
     })
 })
-
 
 
 
