@@ -55,7 +55,7 @@ app.post('/add-doctor', jsonParser, async (request, res) => {
 
 app.get('/read-doctor', jsonParser, async (request, res) => {
 
-    deleteFileCollection(DOCTORS, '1000')
+    getFileCollection(DOCTORS, '1000')
     console.log(request.body)
 
     res.json({
