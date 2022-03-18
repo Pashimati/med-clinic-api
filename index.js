@@ -55,18 +55,13 @@ app.post('/add-doctor', jsonParser, async (request, res) => {
 
 app.get('/read-doctor', jsonParser, async (request, res) => {
 
-    getFileCollection(DOCTORS, '1000')
-    console.log(request.body)
-
+  const doctor = getFileCollection(DOCTORS, '1000')
+    console.log(doctor)
     res.json({
         success: true,
         message: 'okey'
     })
 })
-
-
-
-
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
