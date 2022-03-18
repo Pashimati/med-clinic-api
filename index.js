@@ -9,7 +9,6 @@ const express = require('express')
 const jsonParser = express.json();
 const app = express()
 
-
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(cors())
@@ -42,6 +41,22 @@ app.post('/add-doctor', jsonParser, async (request, res) => {
         message: 'okey'
     })
 })
+
+app.delete('/delete-doctor', jsonParser, async (request, res) => {
+
+    deleteFileCollection(DOCTORS, '5')
+    console.log(request.body)
+
+    res.json({
+        success: true,
+        message: 'okey'
+    })
+})
+
+
+
+
+
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
