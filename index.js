@@ -58,6 +58,7 @@ app.get('/read-doctor', jsonParser, async (request, res) => {
   const doctor = getFileCollection(DOCTORS, '1000')
     console.log(doctor)
     res.json({
+        doctor: doctor,
         success: true,
         message: 'okey'
     })
