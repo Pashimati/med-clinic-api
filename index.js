@@ -55,7 +55,7 @@ app.post('/add-doctor', jsonParser, async (request, res) => {
 
 app.get('/read-doctor', jsonParser, async (request, res) => {
 
-  const doctor = getFileCollection(DOCTORS, '1000')
+  const doctor = await getFileCollection(DOCTORS, '1000')
     console.log(doctor)
     res.json({
         doctor: doctor,
