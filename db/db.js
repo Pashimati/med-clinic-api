@@ -1,15 +1,9 @@
 // Import the functions you need from the SDKs you need
 const {initializeApp} = require("firebase/app");
-const {getFirestore} = require("firebase/firestore")
-const { doc, setDoc, collection, deleteDoc, getDoc } = require("firebase/firestore");
+const {getFirestore} = require("firebase/firestore");
+const { doc, setDoc, collection, deleteDoc, getDoc, getDocs} = require("firebase/firestore");
+const uuid = require('uuid');
 
-
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyAN8J6iltTJ7bTU-76hBSk8qK1E2OGBO_A",
     authDomain: "medical-clinic-db.firebaseapp.com",
@@ -25,30 +19,49 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
 /**
+ * Добавляет если файла в базе нет, если есть- перезаписывает!
+ *
+ * Функция создаёт файл с переданным именем,
+ * иначе генерирует и использует уникальный uuid
  *
  * @param {string}collectionName
- * @param {string}fileName
  * @param {object}data
+ * @param {string|null} fileName
  * @returns {Promise<void>}
  */
-exports.addOrUpdateFileCollection = async function(collectionName, fileName, data) {
-    await setDoc(doc(db, collectionName, fileName), data);
+exports.addOrUpdateFileCollection = async function(collectionName, data, fileName = null) {
+    let originalFileName = fileName || uuid.v1();
+    let res = true;
+    await setDoc(doc(db, collectionName, originalFileName), data)
+        .catch(() => {
+            res = false;
+        })
+
+    return res;
 }
 
 /**
+ * Удаляет файл из коллекции
  *
- * @param {string}collectionName
- * @param {string}fileName
+ * @param {string}collectionName  Имя коллекции
+ * @param {string}fileName  Имя файла
  * @returns {Promise<void>}
  */
 exports.deleteFileCollection = async function(collectionName, fileName) {
-    await deleteDoc(doc(db, collectionName, fileName));
+    let res = true
+    await deleteDoc(doc(db, collectionName, fileName))
+        .catch(() => {
+            res = false
+        })
+
+    return res;
 }
 
 /**
+ * Получает файл из коллекции
  *
- * @param {string}collectionName
- * @param {string}fileName
+ * @param {string}collectionName  Имя коллекции
+ * @param {string}fileName Имя файла
  * @returns {Promise<DocumentData|null>}
  */
 exports.getFileCollection = async function(collectionName, fileName) {
@@ -58,4 +71,29 @@ exports.getFileCollection = async function(collectionName, fileName) {
     } else {
         return null
     }
+}
+
+/**
+ * Получает все файлы из коллекции
+ *
+ * @param collectionName Имя коллекции
+ * @returns {Promise<{data: *, id: string}[]>}
+ */
+exports.getAllFromCollection = async function (collectionName) {
+        const dataCol = collection(db, collectionName);
+        const dataSnapshot = await getDocs(dataCol);
+        const document = dataSnapshot.docs;
+        let dataList = [];
+        if (document.length) {
+            dataList = document.map(doc => {
+                return {
+                    id : doc.id,
+                    data: doc.data()
+                }
+            })
+        } else {
+            throw new Error('not correct collectionName or folder is empty');
+        }
+
+        return dataList;
 }
