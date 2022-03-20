@@ -1,68 +1,23 @@
-const {addOrUpdateFileCollection, deleteFileCollection, getFileCollection} = require('./db/db')
 const cors = require('cors')
-
-
-const {DOCTORS} = require('./db/tables')
-
 const express = require('express')
+const doctorController = require('./controllers/doctorController');
 
-const jsonParser = express.json();
 const app = express()
+app.use(express.json());
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(cors())
 
+//controllers
+app.use('/doctor', doctorController);
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET, PATCH, PUT, POST, DELETE, OPTIONS");
-    next();  // передаем обработку запроса методу app.post("/postuser"...
+    next();
 });
-
-
-app.post('/add-doctor', jsonParser, async (request, res) => {
-    const name = request.body.name
-    const surname = request.body.surname
-    const age = request.body.age
-
-    addOrUpdateFileCollection(DOCTORS, '3', {
-        name: 'pasha',
-        surname: 'surname',
-        age: 28,
-
-    })
-    console.log(request.body)
-    // console.log(name, surname, age)
-
-    res.json({
-        success: true,
-        message: 'okey'
-    })
-})
-
-// app.delete('/delete-doctor', jsonParser, async (request, res) => {
-//
-//     deleteFileCollection(DOCTORS, '5')
-//     console.log(request.body)
-//
-//     res.json({
-//         success: true,
-//         message: 'okey'
-//     })
-// })
-
-app.get('/read-doctor', jsonParser, async (request, res) => {
-
-  const doctor = await getFileCollection(DOCTORS, '1000')
-    console.log(doctor)
-    res.json({
-        doctor: doctor,
-        success: true,
-        message: 'okey'
-    })
-})
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
