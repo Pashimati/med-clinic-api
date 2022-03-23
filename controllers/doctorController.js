@@ -73,6 +73,7 @@ router.post('/delete', async (request, res) => {
     })
 })
 
+
 router.get('/get-all', async (request, res) => {
     let doctors = [];
     let state = true;
