@@ -22,16 +22,18 @@ router.get('/get/:id', async (request, res) => {
 router.post('/add', async (request, res) => {
     const name = request.body.name
     const surname = request.body.surname
-    const age = request.body.age
+    const speciality = request.body.speciality
 
     let message = 'doctor has not been created'
-    let success = true;
+    let success = false;
 
-    if (name && surname && age) {
+    console.log(name, surname, speciality)
+
+    if (name && surname && speciality) {
         await addOrUpdateFileCollection(DOCTORS, {
             name: name,
             surname: surname,
-            age: age,
+            speciality: speciality,
         })
             .then((status) => {
                 message = 'doctor has been created'
@@ -46,7 +48,7 @@ router.post('/add', async (request, res) => {
 })
 
 router.post('/delete', async (request, res) => {
-    const fileName = request.body.fileName
+    const fileName = request.body.id
 
     let message = 'doctor has been deleted'
     let success = true;
