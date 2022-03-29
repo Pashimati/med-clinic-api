@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="590b332b-5c33-49cb-9c65-6c8e3d42f07d" name="Default Changelist" comment="doctors">
+    <list default="true" id="590b332b-5c33-49cb-9c65-6c8e3d42f07d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/doctorController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/doctorController.js" afterDir="false" />
     </list>
@@ -86,7 +86,10 @@
       <workItem from="1648110098415" duration="898000" />
       <workItem from="1648117383511" duration="28000" />
       <workItem from="1648395545312" duration="1258000" />
-      <workItem from="1648448054921" duration="802000" />
+      <workItem from="1648448054921" duration="3210000" />
+      <workItem from="1648484636021" duration="1522000" />
+      <workItem from="1648535963534" duration="798000" />
+      <workItem from="1648563858794" duration="6481000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1647167356470</created>
@@ -263,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647792991634</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="fix function delete">
+      <created>1648449189126</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1648449189126</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,7 +301,8 @@
     <MESSAGE value="fix getFile" />
     <MESSAGE value="fix bags getFileCollection" />
     <MESSAGE value="doctors" />
-    <option name="LAST_COMMIT_MESSAGE" value="doctors" />
+    <MESSAGE value="fix function delete" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix function delete" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

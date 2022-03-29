@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const {addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getAllFromCollection} = require('./../db/db')
-const {DOCTORS} = require('./../db/tables')
+const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getAllFromCollection } = require('./../db/db')
+const { DOCTORS } = require('./../db/tables')
 
 router.get('/get/:id', async (request, res) => {
     const id = request.params.id
-
+    console.log(request)
     let status = true;
     const doctor = await getFileCollection(DOCTORS, id);
 
@@ -27,7 +27,31 @@ router.post('/add', async (request, res) => {
     let message = 'doctor has not been created'
     let success = false;
 
-    console.log(name, surname, speciality)
+    if (name && surname && speciality) {
+        await addOrUpdateFileCollection(DOCTORS, {
+            name: name,
+            surname: surname,
+            speciality: speciality,
+        })
+            .then((status) => {
+                message = 'doctor has been created'
+                success = status
+            })
+    }
+
+    res.json({
+        success: success,
+        message: message,
+    })
+})
+
+router.post('/update', async (request, res) => {
+    const name = request.body.name
+    const surname = request.body.surname
+    const speciality = request.body.speciality
+
+    let message = 'doctor has not been created'
+    let success = false;
 
     if (name && surname && speciality) {
         await addOrUpdateFileCollection(DOCTORS, {
@@ -46,6 +70,7 @@ router.post('/add', async (request, res) => {
         message: message,
     })
 })
+
 
 router.post('/delete', async (request, res) => {
     const fileName = request.body.id
