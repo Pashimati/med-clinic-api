@@ -29,7 +29,7 @@ const db = getFirestore(app)
  * @param {string|null} fileName
  * @returns {Promise<void>}
  */
-exports.addOrUpdateFileCollection = async function(collectionName, data, fileName = null) {
+exports.addOrUpdateFileCollection = async function(collectionName, fileName = null, data,) {
     let originalFileName = fileName || uuid.v1();
     let res = true;
     await setDoc(doc(db, collectionName, originalFileName), data)

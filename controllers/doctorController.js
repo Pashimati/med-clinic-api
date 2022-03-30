@@ -45,6 +45,7 @@ router.post('/add', async (request, res) => {
 })
 
 router.post('/update', async (request, res) => {
+    const id = request.body.data.id
     const name = request.body.data.name
     const surname = request.body.data.surname
     const speciality = request.body.data.speciality
@@ -52,8 +53,9 @@ router.post('/update', async (request, res) => {
     let message = 'doctor has not been updated'
     let success = false;
 
-    if (name && surname && speciality) {
-        await addOrUpdateFileCollection(DOCTORS, {
+    if (id && name && surname && speciality) {
+        await addOrUpdateFileCollection(DOCTORS, id, {
+            id: id,
             name: name,
             surname: surname,
             speciality: speciality,
