@@ -5,7 +5,6 @@ const { DOCTORS } = require('./../db/tables')
 
 router.get('/get/:id', async (request, res) => {
     const id = request.params.id
-    console.log(request)
     let status = true;
     const doctor = await getFileCollection(DOCTORS, id);
 
@@ -46,11 +45,11 @@ router.post('/add', async (request, res) => {
 })
 
 router.post('/update', async (request, res) => {
-    const name = request.body.name
-    const surname = request.body.surname
-    const speciality = request.body.speciality
+    const name = request.body.data.name
+    const surname = request.body.data.surname
+    const speciality = request.body.data.speciality
 
-    let message = 'doctor has not been created'
+    let message = 'doctor has not been updated'
     let success = false;
 
     if (name && surname && speciality) {
@@ -60,7 +59,7 @@ router.post('/update', async (request, res) => {
             speciality: speciality,
         })
             .then((status) => {
-                message = 'doctor has been created'
+                message = 'doctor has been updated'
                 success = status
             })
     }
@@ -109,7 +108,6 @@ router.get('/get-all', async (request, res) => {
             doctors = doctorsList
         })
         .catch(() => {
-            console.log('doctors is empty')
             state = false;
         })
 
