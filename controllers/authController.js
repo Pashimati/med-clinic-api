@@ -4,9 +4,7 @@ const userService = require('../services/userService');
 
 
 router.post("/signup", async (req, res) => {
-    const { email, password } = req.body;
-    // const email = 'Pashimatii@gmail.com'
-    // const password = '123456789'
+    const { email, password } = req.body.data;
     try {
         const user = await userService.addUser(email, password);
         res.status(201).json(user);
@@ -15,10 +13,8 @@ router.post("/signup", async (req, res) => {
     }
 });
 
-router.get("/signin", async (req, res) => {
-    // const { email, password } = req.body;
-    const email = 'Pashimatii@gmail.com'
-    const password = '123456789'
+router.post("/signin", async (req, res) => {
+    const { email, password } = req.body.data;
     try {
         await userService.authenticate(email, password)
             .then((user) => {
@@ -34,11 +30,8 @@ router.get("/signin", async (req, res) => {
 });
 
 router.get("/signOut", async (req, res) => {
-    // const { email, password } = req.body;
-    const email = 'Pashimatii@gmail.com'
-    const password = '123456789'
     try {
-        await userService.authenticate(email, password)
+        await userService.signOut
             .then((user) => {
                 if (!user) {
                     throw new Error('user not found')
