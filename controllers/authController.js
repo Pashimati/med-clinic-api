@@ -31,9 +31,8 @@ router.post("/signin", async (req, res) => {
 
 router.get("/signOut", async (req, res) => {
     try {
-        await userService.signOut
+        await userService.signOut()
             .then((user) => {
-
                 res.json(user);
             })
     } catch (err) {
