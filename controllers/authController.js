@@ -33,9 +33,6 @@ router.get("/signOut", async (req, res) => {
     try {
         await userService.signOut
             .then((user) => {
-                if (!user) {
-                    throw new Error('user not found')
-                }
 
                 res.json(user);
             })
