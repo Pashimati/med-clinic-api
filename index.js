@@ -2,6 +2,7 @@ const cors = require('cors')
 const express = require('express')
 const doctorController = require('./controllers/doctorController');
 const authController = require('./controllers/authController');
+const userController = require('./controllers/userController');
 
 
 const app = express()
@@ -14,6 +15,7 @@ app.use(cors())
 //controllers
 app.use('/doctor', doctorController);
 app.use('/auth', authController);
+app.use('/user', userController);
 
 
 app.use(function(req, res, next) {

@@ -22,12 +22,13 @@ router.post('/add', async (request, res) => {
     const name = request.body.name
     const surname = request.body.surname
     const speciality = request.body.speciality
+    const fileName = "212323wsfdsfsfsf"
 
     let message = 'doctor has not been created'
     let success = false;
 
     if (name && surname && speciality) {
-        await addOrUpdateFileCollection(DOCTORS, {
+        await addOrUpdateFileCollection(DOCTORS, fileName,{
             name: name,
             surname: surname,
             speciality: speciality,
