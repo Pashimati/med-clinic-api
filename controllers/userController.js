@@ -42,7 +42,6 @@ router.post('/add', async (request, res) => {
             .then((status) => {
                 message = 'user has been created'
                 success = status
-                console.log(status)
             })
     }
 

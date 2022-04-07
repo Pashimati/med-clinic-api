@@ -19,15 +19,15 @@ router.get('/get/:id', async (request, res) => {
 })
 
 router.post('/add', async (request, res) => {
-    const name = request.body.name
-    const surname = request.body.surname
-    const speciality = request.body.speciality
+    const name = request.body.data.name
+    const surname = request.body.data.surname
+    const speciality = request.body.data.speciality
 
     let message = 'doctor has not been created'
     let success = false;
 
     if (name && surname && speciality) {
-        await addOrUpdateFileCollection(DOCTORS, {
+        await addOrUpdateFileCollection(DOCTORS, null,{
             name: name,
             surname: surname,
             speciality: speciality,

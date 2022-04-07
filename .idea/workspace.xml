@@ -4,6 +4,7 @@
     <list default="true" id="590b332b-5c33-49cb-9c65-6c8e3d42f07d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/doctorController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/doctorController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/userController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +109,7 @@
       <workItem from="1649155735199" duration="974000" />
       <workItem from="1649164692800" duration="2807000" />
       <workItem from="1649247477498" duration="4642000" />
-      <workItem from="1649319582141" duration="1253000" />
+      <workItem from="1649319582141" duration="1931000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1647167356470</created>
@@ -348,7 +349,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649253507495</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="fix addOrUpdate">
+      <created>1649320871600</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1649320871601</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,7 +391,8 @@
     <MESSAGE value="fix auth control" />
     <MESSAGE value="fix signOut control" />
     <MESSAGE value="add userController" />
-    <option name="LAST_COMMIT_MESSAGE" value="add userController" />
+    <MESSAGE value="fix addOrUpdate" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix addOrUpdate" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
