@@ -28,7 +28,6 @@ exports.authenticate = async (email, password) => {
             if (user) {
                 res = user;
             }
-            // console.log('isAuth', user.isAuthenticated())
         })
         .catch((error) => {
             const errorCode = error.code;

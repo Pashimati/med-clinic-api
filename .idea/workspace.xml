@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="590b332b-5c33-49cb-9c65-6c8e3d42f07d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/controllers/departmentController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/doctorController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/doctorController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/tables.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/tables.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/userService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +51,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/controllers" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -108,7 +111,9 @@
       <workItem from="1649164692800" duration="2807000" />
       <workItem from="1649247477498" duration="4642000" />
       <workItem from="1649319582141" duration="1958000" />
-      <workItem from="1649330855165" duration="53000" />
+      <workItem from="1649330855165" duration="413000" />
+      <workItem from="1649674004176" duration="6785000" />
+      <workItem from="1649707275863" duration="585000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1647167356470</created>
@@ -362,7 +367,28 @@
       <option name="project" value="LOCAL" />
       <updated>1649321529701</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="add new params department">
+      <created>1649330946130</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1649330946130</updated>
+    </task>
+    <task id="LOCAL-00038" summary="get all and delete users">
+      <created>1649676364046</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1649676364046</updated>
+    </task>
+    <task id="LOCAL-00039" summary="update users">
+      <created>1649685948563</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1649685948564</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -399,7 +425,10 @@
     <MESSAGE value="add userController" />
     <MESSAGE value="fix addOrUpdate" />
     <MESSAGE value="fix addOrUpdate(2)" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix addOrUpdate(2)" />
+    <MESSAGE value="add new params department" />
+    <MESSAGE value="get all and delete users" />
+    <MESSAGE value="update users" />
+    <option name="LAST_COMMIT_MESSAGE" value="update users" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
