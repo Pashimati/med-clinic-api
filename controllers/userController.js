@@ -80,50 +80,50 @@ router.post('/add', async (request, res) => {
 // })
 
 
-// router.post('/delete', async (request, res) => {
-//     const fileName = request.body.id
-//
-//     let message = 'doctor has been deleted'
-//     let success = true;
-//
-//     try {
-//         if (!fileName) {
-//             throw new Error('fileName is not exist')
-//         }
-//
-//         await deleteFileCollection(DOCTORS, fileName)
-//             .then((status) => {
-//                 success = status
-//                 if (!status) {
-//                     throw new Error('doctor has not been deleted');
-//                 }
-//             })
-//     } catch (e) {
-//         message = e;
-//     }
-//
-//     res.json({
-//         success,
-//         message
-//     })
-// })
+router.post('/delete', async (request, res) => {
+    const fileName = request.body.id
+
+    let message = 'user has been deleted'
+    let success = true;
+
+    try {
+        if (!fileName) {
+            throw new Error('fileName is not exist')
+        }
+
+        await deleteFileCollection(USERS, fileName)
+            .then((status) => {
+                success = status
+                if (!status) {
+                    throw new Error('doctor has not been deleted');
+                }
+            })
+    } catch (e) {
+        message = e;
+    }
+
+    res.json({
+        success,
+        message
+    })
+})
 
 
-// router.get('/get-all', async (request, res) => {
-//     let doctors = [];
-//     let state = true;
-//     await getAllFromCollection(DOCTORS)
-//         .then((doctorsList) => {
-//             doctors = doctorsList
-//         })
-//         .catch(() => {
-//             state = false;
-//         })
-//
-//     res.json({
-//         doctors: doctors,
-//         success: state
-//     })
-// })
+router.get('/get-all', async (request, res) => {
+    let users = [];
+    let state = true;
+    await getAllFromCollection(USERS)
+        .then((usersList) => {
+            users = usersList
+        })
+        .catch(() => {
+            state = false;
+        })
+
+    res.json({
+        users: users,
+        success: state
+    })
+})
 
 module.exports = router;
