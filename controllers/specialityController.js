@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getAllFromCollection } = require('./../db/db')
-const { SPECIALITY } = require('./../db/tables')
+const { SPECIALITYS } = require('./../db/tables')
 
 router.get('/get/:id', async (request, res) => {
     const id = request.params.id
     let status = true;
-    const speciality = await getFileCollection(SPECIALITY, id);
+    const speciality = await getFileCollection(SPECIALITYS, id);
 
     if (!speciality) {
         status = false;
@@ -25,7 +25,7 @@ router.post('/add', async (request, res) => {
     let success = false;
 
     if (title) {
-        await addOrUpdateFileCollection(SPECIALITY, null,{
+        await addOrUpdateFileCollection(SPECIALITYS, null,{
             title: title,
         })
             .then((status) => {
@@ -48,7 +48,7 @@ router.post('/update', async (request, res) => {
     let success = false;
 
     if (id && title) {
-        await addOrUpdateFileCollection(SPECIALITY, id, {
+        await addOrUpdateFileCollection(SPECIALITYS, id, {
             title: title,
         })
             .then((status) => {
@@ -75,7 +75,7 @@ router.post('/delete', async (request, res) => {
             throw new Error('fileName is not exist')
         }
 
-        await deleteFileCollection(SPECIALITY, fileName)
+        await deleteFileCollection(SPECIALITYS, fileName)
             .then((status) => {
                 success = status
                 if (!status) {
@@ -96,7 +96,7 @@ router.post('/delete', async (request, res) => {
 router.get('/get-all', async (request, res) => {
     let specialitys = [];
     let state = true;
-    await getAllFromCollection(SPECIALITY)
+    await getAllFromCollection(SPECIALITYS)
         .then((specialityList) => {
             specialitys = specialityList
         })
