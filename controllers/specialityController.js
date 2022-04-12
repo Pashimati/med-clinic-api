@@ -94,18 +94,18 @@ router.post('/delete', async (request, res) => {
 
 
 router.get('/get-all', async (request, res) => {
-    let speciality = [];
+    let specialitys = [];
     let state = true;
     await getAllFromCollection(SPECIALITY)
         .then((specialityList) => {
-            speciality = specialityList
+            specialitys = specialityList
         })
         .catch(() => {
             state = false;
         })
 
     res.json({
-        speciality: speciality,
+        specialitys: specialitys,
         success: state
     })
 })
