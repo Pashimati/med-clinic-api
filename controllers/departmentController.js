@@ -19,7 +19,7 @@ router.get('/get/:id', async (request, res) => {
 })
 
 router.get('/add', async (request, res) => {
-    const title = 'хирургия'
+    const title = request.body.data.name
 
     let message = 'department has not been created'
     let success = false;
