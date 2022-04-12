@@ -47,7 +47,7 @@ router.post('/update', async (request, res) => {
     let message = 'department has not been updated'
     let success = false;
 
-    if (id && name) {
+    if (id && title) {
         await addOrUpdateFileCollection(DEPARTMENTS, id, {
             title: title,
         })
