@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="590b332b-5c33-49cb-9c65-6c8e3d42f07d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/departmentController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/departmentController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +110,7 @@
       <workItem from="1649330855165" duration="413000" />
       <workItem from="1649674004176" duration="6785000" />
       <workItem from="1649707275863" duration="1439000" />
-      <workItem from="1649750818634" duration="3171000" />
+      <workItem from="1649750818634" duration="3423000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1647167356470</created>
@@ -421,7 +420,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649753503996</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="get by id department&#10;add department">
+      <created>1649754171905</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1649754171905</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

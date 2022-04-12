@@ -19,7 +19,7 @@ router.get('/get/:id', async (request, res) => {
 })
 
 router.post('/add', async (request, res) => {
-    const title = request.body.data.name
+    const title = request.body.data.title
 
     let message = 'department has not been created'
     let success = false;
@@ -42,14 +42,14 @@ router.post('/add', async (request, res) => {
 
 router.post('/update', async (request, res) => {
     const id = request.body.data.id
-    const name = request.body.data.name
+    const title = request.body.data.title
 
     let message = 'department has not been updated'
     let success = false;
 
     if (id && name) {
         await addOrUpdateFileCollection(DEPARTMENTS, id, {
-            name: name,
+            title: title,
         })
             .then((status) => {
                 message = 'department has been updated'
