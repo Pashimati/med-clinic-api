@@ -18,7 +18,7 @@ router.get('/get/:id', async (request, res) => {
     })
 })
 
-router.get('/add', async (request, res) => {
+router.post('/add', async (request, res) => {
     const title = request.body.data.name
 
     let message = 'department has not been created'
