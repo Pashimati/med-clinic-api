@@ -3,20 +3,20 @@ const router = express.Router();
 const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getAllFromCollection } = require('./../db/db')
 const { DEPARTMENTS } = require('./../db/tables')
 
-// router.get('/get/:id', async (request, res) => {
-//     const id = request.params.id
-//     let status = true;
-//     const doctor = await getFileCollection(DEPARTMENTS, id);
-//
-//     if (!doctor) {
-//         status = false;
-//     }
-//
-//     res.json({
-//         doctor: doctor,
-//         success: status
-//     })
-// })
+router.get('/get/:id', async (request, res) => {
+    const id = request.params.id
+    let status = true;
+    const department = await getFileCollection(DEPARTMENTS, id);
+
+    if (!department) {
+        status = false;
+    }
+
+    res.json({
+        department: department,
+        success: status
+    })
+})
 
 router.get('/add', async (request, res) => {
     const title = 'хирургия'
