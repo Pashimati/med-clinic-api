@@ -40,37 +40,30 @@ router.post('/add', async (request, res) => {
     })
 })
 
-// router.post('/update', async (request, res) => {
-//     const id = request.body.data.id
-//     const name = request.body.data.name
-//     const surname = request.body.data.surname
-//     const speciality = request.body.data.speciality
-//     const department = request.body.data.department
-//
-//     let message = 'doctor has not been updated'
-//     let success = false;
-//
-//     if (id && name && surname && speciality) {
-//         await addOrUpdateFileCollection(DOCTORS, id, {
-//             id: id,
-//             name: name,
-//             surname: surname,
-//             speciality: speciality,
-//             department: department,
-//         })
-//             .then((status) => {
-//                 message = 'doctor has been updated'
-//                 success = status
-//             })
-//     }
-//
-//     res.json({
-//         success: success,
-//         message: message,
-//     })
-// })
-//
-//
+router.post('/update', async (request, res) => {
+    const id = request.body.data.id
+    const name = request.body.data.name
+
+    let message = 'department has not been updated'
+    let success = false;
+
+    if (id && name) {
+        await addOrUpdateFileCollection(DEPARTMENTS, id, {
+            name: name,
+        })
+            .then((status) => {
+                message = 'department has been updated'
+                success = status
+            })
+    }
+
+    res.json({
+        success: success,
+        message: message,
+    })
+})
+
+
 router.post('/delete', async (request, res) => {
     const fileName = request.body.id
 
