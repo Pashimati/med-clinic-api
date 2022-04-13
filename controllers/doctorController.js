@@ -23,16 +23,18 @@ router.post('/add', async (request, res) => {
     const surname = request.body.data.surname
     const speciality = request.body.data.speciality
     const department = request.body.data.department
+    const about = request.body.data.about
 
     let message = 'doctor has not been created'
     let success = false;
 
-    if (name && surname && speciality && department) {
+    if (name && surname && speciality && department && about) {
         await addOrUpdateFileCollection(DOCTORS, null,{
             name: name,
             surname: surname,
             speciality: speciality,
             department: department,
+            about: about,
         })
             .then((status) => {
                 message = 'doctor has been created'
@@ -52,17 +54,19 @@ router.post('/update', async (request, res) => {
     const surname = request.body.data.surname
     const speciality = request.body.data.speciality
     const department = request.body.data.department
+    const about = request.body.data.about
 
     let message = 'doctor has not been updated'
     let success = false;
 
-    if (id && name && surname && speciality) {
+    if (id && name && surname && speciality && about) {
         await addOrUpdateFileCollection(DOCTORS, id, {
             id: id,
             name: name,
             surname: surname,
             speciality: speciality,
             department: department,
+            about: about,
         })
             .then((status) => {
                 message = 'doctor has been updated'
