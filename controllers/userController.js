@@ -4,9 +4,9 @@ const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getA
 const { USERS } = require('./../db/tables')
 
 router.get('/get/:id', async (request, res) => {
-    const id = request.params.id
+    const id = request.params.fileName
     let status = true;
-    const user = await getFileCollection(USERS, id);
+    const user = await getFileCollection(USERS, fileName);
 
     if (!user) {
         status = false;
@@ -19,7 +19,7 @@ router.get('/get/:id', async (request, res) => {
 })
 
 router.post('/add', async (request, res) => {
-    const fileName = request.body.data.id
+    const fileName = request.body.data.fileName
     const name = request.body.data.name
     const surname = request.body.data.surname
     const sex = request.body.data.sex

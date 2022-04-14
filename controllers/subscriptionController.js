@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getAllFromCollection } = require('./../db/db')
-const { SUBSCRIPTION } = require('./../db/tables')
+const { SUBSCRIPTIONS } = require('./../db/tables')
 
 // router.get('/get/:id', async (request, res) => {
 //     const id = request.params.id
@@ -22,16 +22,16 @@ router.post('/add', async (request, res) => {
     const fileName = request.body.data.id
     const name = request.body.data.name
     const surname = request.body.data.surname
-    const sex = request.body.data.sex
+    const email = request.body.data.email
     const age = request.body.data.age
     const address = request.body.data.address
     const phone = request.body.data.phone
 
-    let message = 'user has not been created'
+    let message = 'subscription has not been created'
     let success = false;
 
     if (name && surname && sex && age && address && phone) {
-        await addOrUpdateFileCollection(SUBSCRIPTION, fileName,{
+        await addOrUpdateFileCollection(SUBSCRIPTIONS, fileName,{
             name: name,
             surname: surname,
             sex: sex,
@@ -40,7 +40,7 @@ router.post('/add', async (request, res) => {
             phone: phone,
         })
             .then((status) => {
-                message = 'user has been created'
+                message = 'subscription has been created'
                 success = status
             })
     }
@@ -131,4 +131,4 @@ router.post('/add', async (request, res) => {
 //     })
 // })
 //
-// module.exports = router;
+module.exports = router;
