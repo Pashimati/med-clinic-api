@@ -4,7 +4,7 @@ const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getA
 const { USERS } = require('./../db/tables')
 
 router.get('/get/:id', async (request, res) => {
-    const id = request.params.fileName
+    const fileName = request.params.fileName
     let status = true;
     const user = await getFileCollection(USERS, fileName);
 
@@ -30,8 +30,9 @@ router.post('/add', async (request, res) => {
     let message = 'user has not been created'
     let success = false;
 
-    if (name && surname && sex && age && address && phone) {
+    if (fileName &&name && surname && sex && age && address && phone) {
         await addOrUpdateFileCollection(USERS, fileName,{
+            fileName: fileName,
             name: name,
             surname: surname,
             sex: sex,
