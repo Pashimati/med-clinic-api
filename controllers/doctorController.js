@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getAllFromCollection } = require('./../db/db')
 const { DOCTORS } = require('./../db/tables')
+const { checkIfAuthenticated } = require('../middle/middle')
+
 
 router.get('/get/:id', async (request, res) => {
     const id = request.params.id
@@ -110,7 +112,7 @@ router.post('/delete', async (request, res) => {
 })
 
 
-router.get('/get-all', async (request, res) => {
+router.get('/get-all', checkIfAuthenticated, async (request, res) => {
     let doctors = [];
     let state = true;
     await getAllFromCollection(DOCTORS)

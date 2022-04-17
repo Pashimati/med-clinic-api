@@ -35,7 +35,7 @@ exports.authenticate = async (email, password) => {
             console.log(`${errorCode}: ${errorMessage}`)
         });
 
-    return res;
+    return res.json;
 }
 
 exports.signOut = async () => {
