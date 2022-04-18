@@ -3,18 +3,26 @@ const router = express.Router();
 const userService = require('../services/userService');
 const { firebaseAdmin } = require('../services/firebase-service');
 
-router.post("/signin", async (req, res) => {
-    const { email, password } = req.body.data;
-    console.log(email, password)
+router.get("/get-role", async (req, res) => {
+    let role = 'USER'
     try {
-        await userService.authenticate(email, password)
-            .then((user) => {
-                if (!user) {
-                    throw new Error('user not found')
-                }
+        let authToken = null;
+        if (
+            req.headers.authorization &&
+            req.headers.authorization.split(' ')[0] === 'Bearer'
+        ) {
+            authToken = req.headers.authorization.split(' ')[1];
+        }
+        const userInfo = await firebaseAdmin
+            .auth()
+            .verifyIdToken(authToken);
 
-                res.json(user);
-            })
+        if (userInfo.admin === true) {
+            role = 'ADMIN'
+        } else if (userInfo.doctor === true) {
+            role = 'DOCTOR'
+        }
+        res.status(200).json({role:role})
     } catch (err) {
         res.status(401).json({ error: err.message });
     }
@@ -23,6 +31,7 @@ router.post("/signin", async (req, res) => {
 router.post("/signup", async (req, res) => {
     const { data } = req.body;
     const { email, password } = data;
+
     try {
         const user = await firebaseAdmin.auth().createUser({
             email,

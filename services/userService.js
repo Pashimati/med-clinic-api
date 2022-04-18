@@ -6,19 +6,19 @@ const {
 } = require("firebase/auth")
 const auth = getAuth();
 
-exports.addUser = (email, password) => {
-
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(`user created : [${user.email}]`)
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(`${errorCode}: ${errorMessage}`)
-        });
-}
+// exports.addUser = (email, password) => {
+//
+//     createUserWithEmailAndPassword(auth, email, password)
+//         .then((userCredential) => {
+//             const user = userCredential.user;
+//             console.log(`user created : [${user.email}]`)
+//         })
+//         .catch((error) => {
+//             const errorCode = error.code;
+//             const errorMessage = error.message;
+//             console.log(`${errorCode}: ${errorMessage}`)
+//         });
+// }
 
 exports.authenticate = async (email, password) => {
     let res = null;
