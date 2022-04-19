@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="590b332b-5c33-49cb-9c65-6c8e3d42f07d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/authController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/doctorController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/doctorController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middle/middle.js" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/auth-middleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/userService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,14 +118,8 @@
       <workItem from="1650055393522" duration="3335000" />
       <workItem from="1650180276575" duration="3357000" />
       <workItem from="1650210290118" duration="7713000" />
-      <workItem from="1650296779648" duration="8074000" />
-    </task>
-    <task id="LOCAL-00012" summary="config server">
-      <created>1647451996316</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1647451996316</updated>
+      <workItem from="1650296779648" duration="10020000" />
+      <workItem from="1650349582453" duration="333000" />
     </task>
     <task id="LOCAL-00013" summary="config server">
       <created>1647452222068</created>
@@ -467,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650223776542</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="add middelWear&#10;and fix authController">
+      <created>1650306972450</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1650306972451</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,7 +483,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="doctors" />
     <MESSAGE value="fix function delete" />
     <MESSAGE value="add control update doctors" />
     <MESSAGE value="fix add control update doctors" />
@@ -511,7 +507,8 @@
     <MESSAGE value="add firebase-admin" />
     <MESSAGE value="fix user add" />
     <MESSAGE value="add middelWear" />
-    <option name="LAST_COMMIT_MESSAGE" value="add middelWear" />
+    <MESSAGE value="add middelWear&#10;and fix authController" />
+    <option name="LAST_COMMIT_MESSAGE" value="add middelWear&#10;and fix authController" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

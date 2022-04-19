@@ -3,6 +3,7 @@ const router = express.Router();
 const userService = require('../services/userService');
 const { firebaseAdmin } = require('../services/firebase-service');
 
+
 router.get("/get-role", async (req, res) => {
     let role = 'USER'
     try {
