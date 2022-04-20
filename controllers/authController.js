@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const userService = require('../services/userService');
 const { firebaseAdmin } = require('../services/firebase-service');
 
 
