@@ -5,6 +5,7 @@ const authController = require('./controllers/authController');
 const userController = require('./controllers/userController');
 const departmentController = require('./controllers/departmentController');
 const specialityController = require('./controllers/specialityController');
+const subscriptionController = require('./controllers/subscriptionController');
 
 
 const app = express()
@@ -20,6 +21,7 @@ app.use('/auth', authController);
 app.use('/user', userController);
 app.use('/department', departmentController);
 app.use('/speciality', specialityController);
+app.use('/subscription', subscriptionController);
 
 
 app.use(function(req, res, next) {

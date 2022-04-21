@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="590b332b-5c33-49cb-9c65-6c8e3d42f07d" name="Default Changelist" comment="add middelWear&#10;and fix authController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/authController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/auth.html" beforeDir="false" afterPath="$PROJECT_DIR$/services/email-service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/userService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/subscriptionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/subscriptionController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +49,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../medicalClinic" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -128,6 +125,8 @@
       <workItem from="1650350398692" duration="1252000" />
       <workItem from="1650383437878" duration="1229000" />
       <workItem from="1650472364851" duration="4114000" />
+      <workItem from="1650523124553" duration="331000" />
+      <workItem from="1650530182056" duration="1833000" />
     </task>
     <task id="LOCAL-00013" summary="config server">
       <created>1647452222068</created>

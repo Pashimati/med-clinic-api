@@ -18,38 +18,33 @@ const { SUBSCRIPTIONS } = require('./../db/tables')
 //     })
 // })
 
-// router.post('/add', async (request, res) => {
-//     const fileName = request.body.data.id
-//     const name = request.body.data.name
-//     const surname = request.body.data.surname
-//     const email = request.body.data.email
-//     const age = request.body.data.age
-//     const address = request.body.data.address
-//     const phone = request.body.data.phone
-//
-//     let message = 'subscription has not been created'
-//     let success = false;
-//
-//     if (name && surname && sex && age && address && phone) {
-//         await addOrUpdateFileCollection(SUBSCRIPTIONS, fileName,{
-//             name: name,
-//             surname: surname,
-//             sex: sex,
-//             age: age,
-//             address: address,
-//             phone: phone,
-//         })
-//             .then((status) => {
-//                 message = 'subscription has been created'
-//                 success = status
-//             })
-//     }
-//
-//     res.json({
-//         success: success,
-//         message: message,
-//     })
-// })
+router.post('/add', async (request, res) => {
+    const email = "request.body.data.email"
+    const date = "request.body.data.date"
+    const uidUser = "request.body.data.uidUser"
+    const uidDoctor = "request.body.data.uidDoctor"
+
+    let message = 'subscription has not been created'
+    let success = false;
+
+    if ( email && date && uidUser && uidDoctor) {
+        await addOrUpdateFileCollection(SUBSCRIPTIONS, null,{
+            uidDoctor: uidDoctor,
+            uidUser: uidUser,
+            email: email,
+            date: date,
+        })
+            .then((status) => {
+                message = 'subscription has been created'
+                success = status
+            })
+    }
+
+    res.json({
+        success: success,
+        message: message,
+    })
+})
 
 // router.post('/update', async (request, res) => {
 //     const fileName = request.body.data.fileName
@@ -131,4 +126,4 @@ const { SUBSCRIPTIONS } = require('./../db/tables')
 //     })
 // })
 //
-module.exports = router;
+module.exports = router
