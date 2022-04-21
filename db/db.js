@@ -18,9 +18,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
-module.exports = {
-    db
-}
 /**
  * Добавляет если файла в базе нет, если есть- перезаписывает!
  *
@@ -32,7 +29,7 @@ module.exports = {
  * @param {string|null} fileName
  * @returns {Promise<void>}
  */
-exports.addOrUpdateFileCollection = async function(collectionName, fileName, data) {
+addOrUpdateFileCollection = async function(collectionName, fileName, data) {
     let originalFileName = fileName || uuid.v1();
     let res = true;
     await setDoc(doc(db, collectionName, originalFileName), data)
@@ -50,7 +47,7 @@ exports.addOrUpdateFileCollection = async function(collectionName, fileName, dat
  * @param {string}fileName  Имя файла
  * @returns {Promise<void>}
  */
-exports.deleteFileCollection = async function(collectionName, fileName) {
+deleteFileCollection = async function(collectionName, fileName) {
     let res = true
     await deleteDoc(doc(db, collectionName, fileName))
         .catch(() => {
@@ -67,7 +64,7 @@ exports.deleteFileCollection = async function(collectionName, fileName) {
  * @param {string}fileName Имя файла
  * @returns {Promise<DocumentData|null>}
  */
-exports.getFileCollection = async function(collectionName, fileName) {
+getFileCollection = async function(collectionName, fileName) {
     const docSnap = await getDoc(doc(db, collectionName, fileName));
     if (docSnap.exists()) {
        return docSnap.data();
@@ -82,7 +79,7 @@ exports.getFileCollection = async function(collectionName, fileName) {
  * @param collectionName Имя коллекции
  * @returns {Promise<{data: *, id: string}[]>}
  */
-exports.getAllFromCollection = async function (collectionName) {
+getAllFromCollection = async function (collectionName) {
         const dataCol = collection(db, collectionName);
         const dataSnapshot = await getDocs(dataCol);
         const document = dataSnapshot.docs;
@@ -99,4 +96,12 @@ exports.getAllFromCollection = async function (collectionName) {
         }
 
         return dataList;
+}
+
+module.exports = {
+    db,
+    addOrUpdateFileCollection,
+    deleteFileCollection,
+    getFileCollection,
+    getAllFromCollection
 }

@@ -17,7 +17,7 @@ router.post('/add', async (request, res) => {
     let success = false;
 
     if ( email && date && uidUser && uidDoctor) {
-        sendingLetter(email)
+        // sendingLetter(email)
         await addOrUpdateFileCollection(SUBSCRIPTIONS, null,{
             uidDoctor: uidDoctor,
             uidUser: uidUser,
@@ -91,8 +91,7 @@ router.get('/get-all-byId', async (request, res) => {
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-        subscriptionsById = doc.data()
-        // console.log(doc.id, " => ", doc.data());
+        subscriptionsById.push(doc.data())
     });
 
     res.json({
