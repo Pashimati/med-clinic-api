@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="590b332b-5c33-49cb-9c65-6c8e3d42f07d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/doctorController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/doctorController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/subscriptionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/subscriptionController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/email-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/email-service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,14 +129,8 @@
       <workItem from="1650523124553" duration="331000" />
       <workItem from="1650530182056" duration="2311000" />
       <workItem from="1650532953834" duration="1412000" />
-      <workItem from="1650547414211" duration="1091000" />
-    </task>
-    <task id="LOCAL-00014" summary="config server">
-      <created>1647453070390</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1647453070390</updated>
+      <workItem from="1650547414211" duration="1280000" />
+      <workItem from="1650559611534" duration="4303000" />
     </task>
     <task id="LOCAL-00015" summary="config server">
       <created>1647536773410</created>
@@ -474,7 +468,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650532169027</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="add entries and set letter mail">
+      <created>1650548655539</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1650548655540</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,7 +494,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add control update doctors" />
     <MESSAGE value="fix add control update doctors" />
     <MESSAGE value="auth" />
     <MESSAGE value="fix auth control" />
@@ -518,7 +518,8 @@
     <MESSAGE value="add middelWear" />
     <MESSAGE value="add middelWear&#10;and fix authController" />
     <MESSAGE value="add subscription controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="add subscription controller" />
+    <MESSAGE value="add entries and set letter mail" />
+    <option name="LAST_COMMIT_MESSAGE" value="add entries and set letter mail" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

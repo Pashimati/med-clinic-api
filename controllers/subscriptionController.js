@@ -3,22 +3,9 @@ const router = express.Router();
 const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getAllFromCollection } = require('./../db/db')
 const { SUBSCRIPTIONS } = require('./../db/tables')
 const { sendingLetter } = require('../services/email-service')
-
-
-// router.get('/get/:id', async (request, res) => {
-//     const id = request.params.id
-//     let status = true;
-//     const user = await getFileCollection(USERS, id);
-//
-//     if (!user) {
-//         status = false;
-//     }
-//
-//     res.json({
-//         user: user,
-//         success: status
-//     })
-// })
+const { collection, query, where, getDocs } = require("firebase/firestore");
+const { db } = require('../db/db');
+const subscriptions = collection(db, "subscriptions");
 
 router.post('/add', async (request, res) => {
     const email = request.body.data.email
@@ -48,39 +35,6 @@ router.post('/add', async (request, res) => {
         message: message,
     })
 })
-
-// router.post('/update', async (request, res) => {
-//     const fileName = request.body.data.fileName
-//     const name = request.body.data.name
-//     const surname = request.body.data.surname
-//     const sex = request.body.data.sex
-//     const age = request.body.data.age
-//     const address = request.body.data.address
-//     const phone = request.body.data.phone
-//
-//     let message = 'user has not been created'
-//     let success = false;
-//
-//     if (fileName && name && surname && sex && age && address && phone) {
-//         await addOrUpdateFileCollection(USERS, fileName,{
-//             name: name,
-//             surname: surname,
-//             sex: sex,
-//             age: age,
-//             address: address,
-//             phone: phone,
-//         })
-//             .then((status) => {
-//                 message = 'user has been created'
-//                 success = status
-//             })
-//     }
-//
-//     res.json({
-//         success: success,
-//         message: message,
-//     })
-// })
 
 
 // router.post('/delete', async (request, res) => {
@@ -125,6 +79,24 @@ router.get('/get-all', async (request, res) => {
 
     res.json({
         subscriptions: subscriptions,
+        success: state
+    })
+})
+
+router.get('/get-all-byId', async (request, res) => {
+    const uidDoctor = 'ZFZwDcId1YamM0wnZeSAcfVb4AA3'
+    let subscriptionsById = [];
+    let state = true;
+    const q = query(subscriptions, where("uidDoctor", "==", uidDoctor))
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        subscriptionsById = doc.data()
+        // console.log(doc.id, " => ", doc.data());
+    });
+
+    res.json({
+        subscriptionsById: subscriptionsById,
         success: state
     })
 })

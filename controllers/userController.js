@@ -19,7 +19,7 @@ router.get('/get/:id', async (request, res) => {
 })
 
 router.post('/add', async (request, res) => {
-    const fileName = request.body.data.id
+    const fileName = request.body.data.fileName
     const name = request.body.data.name
     const surname = request.body.data.surname
     const sex = request.body.data.sex
@@ -30,7 +30,7 @@ router.post('/add', async (request, res) => {
     let message = 'user has not been created'
     let success = false;
     console.log(fileName)
-    if (name && surname && sex && age && address && phone) {
+    if (name && surname && sex && age && address && phone && fileName) {
         await addOrUpdateFileCollection(USERS, fileName,{
             name: name,
             surname: surname,
