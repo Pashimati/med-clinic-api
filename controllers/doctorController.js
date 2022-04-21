@@ -45,8 +45,9 @@ router.post('/add', async (request, res) => {
             // next time a new one is issued.
         });
 
-    if (name && surname && speciality && department && about) {
+    if (name && surname && speciality && department && about && uid) {
         await addOrUpdateFileCollection(DOCTORS, uid,{
+            doctorUid: uid,
             name: name,
             surname: surname,
             speciality: speciality,
@@ -66,44 +67,6 @@ router.post('/add', async (request, res) => {
 })
 
 
-
-router.get('/admin', async (request, res) => {
-
-
-    const doctor = await firebaseAdmin.auth().createUser({
-        email: 'admin@admin.com',
-        password: '1234567891',
-    });
-
-    const uid = doctor.uid
-    firebaseAdmin.auth()
-        .setCustomUserClaims(uid, { admin: true })
-        .then(() => {
-            // The new custom claims will propagate to the user's ID token the
-            // next time a new one is issued.
-        });
-
-    await addOrUpdateFileCollection(USERS, uid,{
-        name: 'name',
-        surname: 'surname',
-        speciality: 'speciality',
-        department: 'department',
-        about: 'about',
-    })
-        .then((status) => {
-            message = 'doctor has been created'
-            success = status
-        })
-})
-
-
-
-
-
-
-
-
-
 router.post('/update', async (request, res) => {
     const id = request.body.data.id
     const name = request.body.data.name
@@ -117,7 +80,7 @@ router.post('/update', async (request, res) => {
 
     if (id && name && surname && speciality && about) {
         await addOrUpdateFileCollection(DOCTORS, id, {
-            id: id,
+            doctorUid: id,
             name: name,
             surname: surname,
             speciality: speciality,

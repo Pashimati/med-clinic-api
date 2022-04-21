@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getAllFromCollection } = require('./../db/db')
 const { SUBSCRIPTIONS } = require('./../db/tables')
+const { sendingLetter } = require('../services/email-service')
+
 
 // router.get('/get/:id', async (request, res) => {
 //     const id = request.params.id
@@ -19,15 +21,16 @@ const { SUBSCRIPTIONS } = require('./../db/tables')
 // })
 
 router.post('/add', async (request, res) => {
-    const email = "request.body.data.email"
-    const date = "request.body.data.date"
-    const uidUser = "request.body.data.uidUser"
-    const uidDoctor = "request.body.data.uidDoctor"
+    const email = request.body.data.email
+    const date = request.body.data.date
+    const uidUser = request.body.data.uidUser
+    const uidDoctor = request.body.data.nameDoctor.doctorUid
 
     let message = 'subscription has not been created'
     let success = false;
 
     if ( email && date && uidUser && uidDoctor) {
+        sendingLetter(email)
         await addOrUpdateFileCollection(SUBSCRIPTIONS, null,{
             uidDoctor: uidDoctor,
             uidUser: uidUser,
@@ -107,23 +110,23 @@ router.post('/add', async (request, res) => {
 //         message
 //     })
 // })
-//
-//
-// router.get('/get-all', async (request, res) => {
-//     let users = [];
-//     let state = true;
-//     await getAllFromCollection(USERS)
-//         .then((usersList) => {
-//             users = usersList
-//         })
-//         .catch(() => {
-//             state = false;
-//         })
-//
-//     res.json({
-//         users: users,
-//         success: state
-//     })
-// })
-//
+
+
+router.get('/get-all', async (request, res) => {
+    let subscriptions = [];
+    let state = true;
+    await getAllFromCollection(SUBSCRIPTIONS)
+        .then((subscriptionsList) => {
+            subscriptions = subscriptionsList
+        })
+        .catch(() => {
+            state = false;
+        })
+
+    res.json({
+        subscriptions: subscriptions,
+        success: state
+    })
+})
+
 module.exports = router
