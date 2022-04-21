@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="590b332b-5c33-49cb-9c65-6c8e3d42f07d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/subscriptionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/subscriptionController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/userController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,21 +127,7 @@
       <workItem from="1650530182056" duration="2311000" />
       <workItem from="1650532953834" duration="1412000" />
       <workItem from="1650547414211" duration="1280000" />
-      <workItem from="1650559611534" duration="4303000" />
-    </task>
-    <task id="LOCAL-00015" summary="config server">
-      <created>1647536773410</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1647536773410</updated>
-    </task>
-    <task id="LOCAL-00016" summary="config server">
-      <created>1647536929879</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1647536929879</updated>
+      <workItem from="1650559611534" duration="5062000" />
     </task>
     <task id="LOCAL-00017" summary="config server">
       <created>1647537075512</created>
@@ -475,7 +458,21 @@
       <option name="project" value="LOCAL" />
       <updated>1650548655540</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="add entries and set letter mail">
+      <created>1650564673393</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1650564673394</updated>
+    </task>
+    <task id="LOCAL-00065" summary="add entries and set letter mail">
+      <created>1650564759302</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1650564759302</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
