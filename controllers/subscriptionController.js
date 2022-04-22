@@ -83,17 +83,18 @@ router.get('/get-all', async (request, res) => {
     })
 })
 
-router.get('/get-all-byId', async (request, res) => {
-    const uidDoctor = 'ZFZwDcId1YamM0wnZeSAcfVb4AA3'
+router.post('/get-all-byId', async (request, res) => {
+    const uidDoctor = request.body.uid
+    console.log(uidDoctor)
     let subscriptionsById = [];
     let state = true;
-    const q = query(subscriptions, where("uidDoctor", "==", uidDoctor))
+    const q =  query(subscriptions, where("uidDoctor", "==", uidDoctor))
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
         subscriptionsById.push(doc.data())
     });
-
+    console.log(subscriptionsById)
     res.json({
         subscriptionsById: subscriptionsById,
         success: state
