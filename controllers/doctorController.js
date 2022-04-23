@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getAllFromCollection } = require('./../db/db')
-const { DOCTORS, USERS } = require('./../db/tables')
+const { DOCTORS } = require('./../db/tables')
 const { checkIfDoctor, checkIfAdmin } = require('../middlewares/auth-middleware')
 const { firebaseAdmin } = require('../services/firebase-service');
 
@@ -20,7 +20,7 @@ router.get('/get/:id', async (request, res) => {
     })
 })
 
-router.post('/add', async (request, res) => {
+router.post('/admin/add', checkIfAdmin, async (request, res) => {
     const password = request.body.data.password
     const email = request.body.data.email
     const name = request.body.data.name
@@ -67,7 +67,7 @@ router.post('/add', async (request, res) => {
 })
 
 
-router.post('/update', async (request, res) => {
+router.post('/update', checkIfAdmin, async (request, res) => {
     const id = request.body.data.id
     const name = request.body.data.name
     const surname = request.body.data.surname
@@ -100,7 +100,7 @@ router.post('/update', async (request, res) => {
 })
 
 
-router.post('/delete', async (request, res) => {
+router.post('/delete', checkIfAdmin, async (request, res) => {
     const fileName = request.body.id
 
     let message = 'doctor has been deleted'
