@@ -67,7 +67,7 @@ router.post('/admin/add', checkIfAdmin, async (request, res) => {
 })
 
 
-router.post('/update', checkIfAdmin, async (request, res) => {
+router.post('/admin/update', checkIfAdmin, async (request, res) => {
     const id = request.body.data.id
     const name = request.body.data.name
     const surname = request.body.data.surname
