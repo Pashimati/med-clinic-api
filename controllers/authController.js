@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { firebaseAdmin } = require('../services/firebase-service');
+const {
+    firebaseAdmin,
+    authenticate,
+    signOut
+} = require('../services/firebase-service');
 
 
 router.get("/get-role", async (req, res) => {
@@ -46,7 +50,7 @@ router.post("/signup", async (req, res) => {
 
 router.get("/signOut", async (req, res) => {
     try {
-        await userService.signOut()
+        await signOut()
             .then((user) => {
                 res.json(user);
             })
