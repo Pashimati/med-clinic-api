@@ -4,21 +4,37 @@ const router = express.Router();
 const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getAllFromCollection } = require('./../db/db')
 const { SUBSCRIPTIONS } = require('./../db/tables')
 const { sendingLetter } = require('../services/email-service')
-const { collection, query, where, getDocs } = require("firebase/firestore");
+const { collection, query, where, getDocs, orderBy } = require("firebase/firestore");
 const { db } = require('../db/db');
 const subscriptions = collection(db, "subscriptions");
+let ejs = require('ejs');
+
 
 router.post('/add', checkIfAuthenticated, async (request, res) => {
     const email = request.body.data.email
-    const date = request.body.data.date
+    let date = request.body.data.date
+    const time = request.body.data.time
     const uidUser = request.body.data.uidUser
     const uidDoctor = request.body.data.nameDoctor.doctorUid
+    if (time) {
+        console.log('time is exist');
+        let hoursAndMinArray = time.split(':')
+        let dateObject = new Date(date)
+        dateObject.setHours(hoursAndMinArray[0])
+        dateObject.setMinutes(hoursAndMinArray[1])
+
+        date = dateObject.getTime()
+    }
 
     let message = 'subscription has not been created'
     let success = false;
 
     if ( email && date && uidUser && uidDoctor) {
-        sendingLetter(email)
+        let path = __dirname + "/../views/report.ejs";
+
+        console.log(path)
+        const template = ejs.renderFile(path, {people: people})
+        sendingLetter(email, template)
         await addOrUpdateFileCollection(SUBSCRIPTIONS, null,{
             uidDoctor: uidDoctor,
             uidUser: uidUser,
@@ -86,16 +102,14 @@ router.get('/get-all', checkIfDoctor, async (request, res) => {
 
 router.post('/get-all-byId', async (request, res) => {
     const uidDoctor = request.body.uid
-    console.log(uidDoctor)
     let subscriptionsById = [];
     let state = true;
-    const q =  query(subscriptions, where("uidDoctor", "==", uidDoctor))
+    const q =  query(subscriptions, where("uidDoctor", "==", uidDoctor), orderBy("date", "asc"))
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
         subscriptionsById.push(doc.data())
     });
-    console.log(subscriptionsById)
     res.json({
         subscriptionsById: subscriptionsById,
         success: state

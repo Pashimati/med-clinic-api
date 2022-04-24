@@ -1,7 +1,7 @@
 require('dotenv').config()
 const nodemailer = require('nodemailer')
 
- exports.sendingLetter = (email) => {
+ exports.sendingLetter = (email, template) => {
      let transporter = nodemailer.createTransport({
          service: 'gmail',
          host: 'smtp.ethereal.email',
@@ -18,7 +18,6 @@ const nodemailer = require('nodemailer')
          to: email,
          subject: 'Message from Node js',
          text: 'This message was sent from Node js server.',
-         html:
-             'This <i>message</i> was sent from <strong>Node js</strong> server.',
+         html: template
      })
 }
