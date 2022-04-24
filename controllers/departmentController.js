@@ -1,4 +1,5 @@
 const express = require('express');
+const { checkIfAdmin,  } = require("../middlewares/auth-middleware");
 const router = express.Router();
 const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getAllFromCollection } = require('./../db/db')
 const { DEPARTMENTS } = require('./../db/tables')
@@ -18,7 +19,7 @@ router.get('/get/:id', async (request, res) => {
     })
 })
 
-router.post('/add', async (request, res) => {
+router.post('/add', checkIfAdmin, async (request, res) => {
     const title = request.body.data.title
     const description = request.body.data.description
 
@@ -42,7 +43,7 @@ router.post('/add', async (request, res) => {
     })
 })
 
-router.post('/update', async (request, res) => {
+router.post('/update', checkIfAdmin,  async (request, res) => {
     const id = request.body.data.id
     const title = request.body.data.title
     const description = request.body.data.description
@@ -68,7 +69,7 @@ router.post('/update', async (request, res) => {
 })
 
 
-router.post('/delete', async (request, res) => {
+router.post('/delete', checkIfAdmin, async (request, res) => {
     const fileName = request.body.id
 
     let message = 'department has been deleted'
