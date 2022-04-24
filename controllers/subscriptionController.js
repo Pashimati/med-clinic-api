@@ -1,4 +1,5 @@
 const express = require('express');
+const { checkIfAuthenticated, checkIfDoctor } = require("../middlewares/auth-middleware");
 const router = express.Router();
 const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getAllFromCollection } = require('./../db/db')
 const { SUBSCRIPTIONS } = require('./../db/tables')
@@ -7,7 +8,7 @@ const { collection, query, where, getDocs } = require("firebase/firestore");
 const { db } = require('../db/db');
 const subscriptions = collection(db, "subscriptions");
 
-router.post('/add', async (request, res) => {
+router.post('/add', checkIfAuthenticated, async (request, res) => {
     const email = request.body.data.email
     const date = request.body.data.date
     const uidUser = request.body.data.uidUser
@@ -17,7 +18,7 @@ router.post('/add', async (request, res) => {
     let success = false;
 
     if ( email && date && uidUser && uidDoctor) {
-        // sendingLetter(email)
+        sendingLetter(email)
         await addOrUpdateFileCollection(SUBSCRIPTIONS, null,{
             uidDoctor: uidDoctor,
             uidUser: uidUser,
@@ -66,7 +67,7 @@ router.post('/add', async (request, res) => {
 // })
 
 
-router.get('/get-all', async (request, res) => {
+router.get('/get-all', checkIfDoctor, async (request, res) => {
     let subscriptions = [];
     let state = true;
     await getAllFromCollection(SUBSCRIPTIONS)
