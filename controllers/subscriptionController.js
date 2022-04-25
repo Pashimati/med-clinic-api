@@ -2,12 +2,11 @@ const express = require('express');
 const { checkIfAuthenticated, checkIfDoctor } = require("../middlewares/auth-middleware");
 const router = express.Router();
 const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getAllFromCollection } = require('./../db/db')
-const { SUBSCRIPTIONS } = require('./../db/tables')
+const { SUBSCRIPTIONS, USERS, DOCTORS } = require('./../db/tables')
 const { sendingLetter } = require('../services/email-service')
 const { collection, query, where, getDocs, orderBy } = require("firebase/firestore");
 const { db } = require('../db/db');
 const subscriptions = collection(db, "subscriptions");
-let ejs = require('ejs');
 
 
 router.post('/add', checkIfAuthenticated, async (request, res) => {
@@ -17,7 +16,6 @@ router.post('/add', checkIfAuthenticated, async (request, res) => {
     const uidUser = request.body.data.uidUser
     const uidDoctor = request.body.data.nameDoctor.doctorUid
     if (time) {
-        console.log('time is exist');
         let hoursAndMinArray = time.split(':')
         let dateObject = new Date(date)
         dateObject.setHours(hoursAndMinArray[0])
@@ -30,11 +28,24 @@ router.post('/add', checkIfAuthenticated, async (request, res) => {
     let success = false;
 
     if ( email && date && uidUser && uidDoctor) {
-        let path = __dirname + "/../views/report.ejs";
 
-        console.log(path)
-        const template = ejs.renderFile(path, {people: people})
-        sendingLetter(email, template)
+        const user = await getFileCollection(USERS, uidUser);
+        const doctor = await getFileCollection(DOCTORS, uidDoctor);
+
+        if (!user && doctor) {
+            success = false;
+        }
+
+        const dateString = new Date(date);
+        dateString.getTime()
+
+        const info = {
+            user: user,
+            doctor: doctor,
+            date: dateString
+        }
+
+        sendingLetter(email, info)
         await addOrUpdateFileCollection(SUBSCRIPTIONS, null,{
             uidDoctor: uidDoctor,
             uidUser: uidUser,
