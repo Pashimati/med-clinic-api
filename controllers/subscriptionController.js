@@ -54,33 +54,33 @@ router.post('/add', checkIfAuthenticated, async (request, res) => {
 })
 
 
-// router.post('/delete', async (request, res) => {
-//     const fileName = request.body.id
-//
-//     let message = 'user has been deleted'
-//     let success = true;
-//
-//     try {
-//         if (!fileName) {
-//             throw new Error('fileName is not exist')
-//         }
-//
-//         await deleteFileCollection(USERS, fileName)
-//             .then((status) => {
-//                 success = status
-//                 if (!status) {
-//                     throw new Error('doctor has not been deleted');
-//                 }
-//             })
-//     } catch (e) {
-//         message = e;
-//     }
-//
-//     res.json({
-//         success,
-//         message
-//     })
-// })
+router.post('/delete', checkIfDoctor, async (request, res) => {
+    const fileName = request.body.id
+
+    let message = 'subscription has been deleted'
+    let success = true;
+
+    try {
+        if (!fileName) {
+            throw new Error('fileName is not exist')
+        }
+
+        await deleteFileCollection(SUBSCRIPTIONS, fileName)
+            .then((status) => {
+                success = status
+                if (!status) {
+                    throw new Error('subscription has not been deleted');
+                }
+            })
+    } catch (e) {
+        message = e;
+    }
+
+    res.json({
+        success,
+        message
+    })
+})
 
 
 router.get('/get-all', checkIfDoctor, async (request, res) => {
@@ -100,7 +100,7 @@ router.get('/get-all', checkIfDoctor, async (request, res) => {
     })
 })
 
-router.post('/get-all-byId', async (request, res) => {
+router.post('/get-all-byId', checkIfDoctor, async (request, res) => {
     const uidDoctor = request.body.uid
     let subscriptionsById = [];
     let state = true;
@@ -108,7 +108,11 @@ router.post('/get-all-byId', async (request, res) => {
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-        subscriptionsById.push(doc.data())
+        console.log(doc.id, " => ", doc.data());
+        subscriptionsById.push({
+            data:doc.data(),
+            id: doc.id
+        })
     });
     res.json({
         subscriptionsById: subscriptionsById,
