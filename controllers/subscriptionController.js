@@ -35,17 +35,17 @@ router.post('/add', checkIfAuthenticated, async (request, res) => {
         if (!user && !doctor) {
             success = false;
         }
-        //
-        // const dateString = new Date(date);
-        // dateString.getTime()
-        //
-        // const info = {
-        //     user: user,
-        //     doctor: doctor,
-        //     date: dateString
-        // }
-        //
-        // sendingLetter(email, info)
+
+        const dateString = new Date(date);
+        dateString.getTime()
+
+        const info = {
+            user: user,
+            doctor: doctor,
+            date: dateString
+        }
+
+        sendingLetter(email, info)
         await addOrUpdateFileCollection(SUBSCRIPTIONS, null,{
             uidDoctor: uidDoctor,
             uidUser: uidUser,
