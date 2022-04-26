@@ -32,7 +32,7 @@ router.post('/add', checkIfAuthenticated, async (request, res) => {
         const user = await getFileCollection(USERS, uidUser);
         const doctor = await getFileCollection(DOCTORS, uidDoctor);
 
-        if (!user && doctor) {
+        if (!user && !doctor) {
             success = false;
         }
 
