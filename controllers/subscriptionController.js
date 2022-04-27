@@ -44,6 +44,7 @@ router.post('/add', checkIfAuthenticated, async (request, res) => {
             doctor: doctor,
             date: dateString
         }
+        console.log(info)
 
         sendingLetter(email, info)
         await addOrUpdateFileCollection(SUBSCRIPTIONS, null,{

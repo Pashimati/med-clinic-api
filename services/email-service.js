@@ -2,19 +2,20 @@ require('dotenv').config()
 const nodemailer = require('nodemailer')
 
  exports.sendingLetter = (email, info) => {
+     console.log(122312412)
      let transporter = nodemailer.createTransport({
          service: 'gmail',
          host: 'smtp.ethereal.email',
          port: 587,
          secure: false,
          auth: {
-             user: 'pashimatii@gmail.com',
-             pass: 'Pkosh5477A',
+             user: EMAIL,
+             pass: PASSWORD,
          },
      })
 
     transporter.sendMail({
-         from: 'pashimatii@gmail.com',
+         from: 'pashkatest54@gmail.com',
          to: email,
          subject: 'Message from SkyLab Clinic.',
          text: 'This message was sent SkyLab Clinic.',
