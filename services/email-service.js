@@ -2,17 +2,14 @@ require('dotenv').config()
 const nodemailer = require('nodemailer')
 
  exports.sendingLetter = (email, info) => {
-     console.log(process.env.EMAIL)
-     console.log(process.env.PASSWORD)
-     console.log(122312412)
      let transporter = nodemailer.createTransport({
          service: 'gmail',
          host: 'smtp.ethereal.email',
          port: 587,
          secure: false,
          auth: {
-             user: 'pashkatest54@gmail.com',
-             pass: 'pashkatest5477',
+             user: process.env.EMAIL,
+             pass: process.env.PASSWORD,
          },
      })
 
