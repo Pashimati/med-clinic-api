@@ -9,8 +9,8 @@ const nodemailer = require('nodemailer')
          port: 587,
          secure: false,
          auth: {
-             user: EMAIL,
-             pass: PASSWORD,
+             user: process.env.EMAIL,
+             pass: process.env.PASSWORD,
          },
      })
 
