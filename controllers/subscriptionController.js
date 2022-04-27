@@ -36,17 +36,21 @@ router.post('/add', checkIfAuthenticated, async (request, res) => {
             success = false;
         }
 
-        const dateString = new Date(date);
-        dateString.getTime()
+        let dateString = new Date(date);
+
+        let dateFormat = dateString.getDate()+
+            "/"+(dateString.getMonth()+1)+
+            "/"+dateString.getFullYear()+
+            " "+dateString.getHours()+
+            ":"+dateString.getMinutes();
 
         const info = {
             user: user,
             doctor: doctor,
-            date: dateString
+            date: dateFormat
         }
-        console.log(info)
-
         sendingLetter(email, info)
+
         await addOrUpdateFileCollection(SUBSCRIPTIONS, null,{
             uidDoctor: uidDoctor,
             uidUser: uidUser,
@@ -120,7 +124,6 @@ router.post('/get-all-byId', checkIfDoctor, async (request, res) => {
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
         subscriptionsById.push({
             data:doc.data(),
             id: doc.id
