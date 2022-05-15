@@ -19,9 +19,9 @@ router.get('/get/:id', async (request, res) => {
     })
 })
 
-router.post('/add', checkIfAdmin, async (request, res) => {
-    const title = request.body.data.title
-    const description = request.body.data.description
+router.post('/add', checkIfAdmin,async (request, res) => {
+    const title = request.body.title
+    const description = request.body.description
 
     let message = 'department has not been created'
     let success = false;
@@ -44,9 +44,9 @@ router.post('/add', checkIfAdmin, async (request, res) => {
 })
 
 router.post('/update', checkIfAdmin,  async (request, res) => {
-    const id = request.body.data.id
-    const title = request.body.data.title
-    const description = request.body.data.description
+    const id = request.body.id
+    const title = request.body.title
+    const description = request.body.description
 
     let message = 'department has not been updated'
     let success = false;
@@ -69,9 +69,8 @@ router.post('/update', checkIfAdmin,  async (request, res) => {
 })
 
 
-router.post('/delete', checkIfAdmin, async (request, res) => {
-    const fileName = request.body.id
-
+router.delete('/delete/:id', checkIfAdmin, async (request, res) => {
+    const fileName = request.params.id
     let message = 'department has been deleted'
     let success = true;
 

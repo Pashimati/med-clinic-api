@@ -10,11 +10,11 @@ const subscriptions = collection(db, "subscriptions");
 
 
 router.post('/add', checkIfAuthenticated, async (request, res) => {
-    const email = request.body.data.email
-    let date = request.body.data.date
-    const time = request.body.data.time
-    const uidUser = request.body.data.uidUser
-    const uidDoctor = request.body.data.nameDoctor.doctorUid
+    const email = request.body.email
+    let date = request.body.date
+    const time = request.body.time
+    const uidUser = request.body.uidUser
+    const uidDoctor = request.body.nameDoctor.doctorUid
     if (time) {
         let hoursAndMinArray = time.split(':')
         let dateObject = new Date(date)
@@ -70,8 +70,8 @@ router.post('/add', checkIfAuthenticated, async (request, res) => {
 })
 
 
-router.post('/delete', checkIfDoctor, async (request, res) => {
-    const fileName = request.body.id
+router.delete('/delete/:id', checkIfDoctor, async (request, res) => {
+    const fileName = request.params.id
 
     let message = 'subscription has been deleted'
     let success = true;
@@ -98,26 +98,8 @@ router.post('/delete', checkIfDoctor, async (request, res) => {
     })
 })
 
-
-router.get('/get-all', checkIfDoctor, async (request, res) => {
-    let subscriptions = [];
-    let state = true;
-    await getAllFromCollection(SUBSCRIPTIONS)
-        .then((subscriptionsList) => {
-            subscriptions = subscriptionsList
-        })
-        .catch(() => {
-            state = false;
-        })
-
-    res.json({
-        subscriptions: subscriptions,
-        success: state
-    })
-})
-
-router.post('/get-all-byId', checkIfDoctor, async (request, res) => {
-    const uidDoctor = request.body.uid
+router.get('/get-all-byId/:id', checkIfDoctor, async (request, res) => {
+    const uidDoctor = request.params.id
     let subscriptionsById = [];
     let state = true;
     const q =  query(subscriptions, where("uidDoctor", "==", uidDoctor), orderBy("date", "asc"))

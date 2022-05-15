@@ -32,8 +32,8 @@ router.get("/get-role", async (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
-    const { data } = req.body;
-    const { email, password } = data;
+    const email = req.body.email
+    const password = req.body.password
 
     try {
         const user = await firebaseAdmin.auth().createUser({

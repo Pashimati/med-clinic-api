@@ -1,11 +1,11 @@
 const express = require('express');
 const { firebaseAdmin } = require("../services/firebase-service");
-const { checkIfAdmin } = require("../middlewares/auth-middleware");
+const { checkIfAdmin, checkIfAuthenticated } = require("../middlewares/auth-middleware");
 const router = express.Router();
 const { addOrUpdateFileCollection, deleteFileCollection, getFileCollection, getAllFromCollection } = require('./../db/db')
 const { USERS } = require('./../db/tables')
 
-router.get('/get/:id', async (request, res) => {
+router.get('/get/:id', checkIfAuthenticated, async (request, res) => {
     const fileName = request.params.id
     let status = true;
     const user = await getFileCollection(USERS, fileName);
@@ -20,49 +20,15 @@ router.get('/get/:id', async (request, res) => {
     })
 })
 
-router.post('/add', async (request, res) => {
-    const fileName = request.body.data.fileName
-    const name = request.body.data.name
-    const surname = request.body.data.surname
-    const sex = request.body.data.sex
-    const age = request.body.data.age
-    const address = request.body.data.address
-    const phone = request.body.data.phone
-
-    let message = 'user has not been created'
-    let success = false;
-    console.log(fileName)
-    if (name && surname && sex && age && address && phone && fileName) {
-        await addOrUpdateFileCollection(USERS, fileName,{
-            name: name,
-            surname: surname,
-            sex: sex,
-            age: age,
-            address: address,
-            phone: phone,
-        })
-            .then((status) => {
-                message = 'user has been created'
-                success = status
-            })
-    }
-
-    res.json({
-        success: success,
-        message: message,
-    })
-})
-
-
-router.post('/admin/add', checkIfAdmin, async (request, res) => {
-    const password = request.body.data.password
-    const email = request.body.data.email
-    const name = request.body.data.name
-    const surname = request.body.data.surname
-    const sex = request.body.data.sex
-    const age = request.body.data.age
-    const address = request.body.data.address
-    const phone = request.body.data.phone
+router.post('/add', checkIfAuthenticated, async (request, res) => {
+    const password = request.body.password
+    const email = request.body.email
+    const name = request.body.name
+    const surname = request.body.surname
+    const sex = request.body.sex
+    const age = request.body.age
+    const address = request.body.address
+    const phone = request.body.phone
 
     let message = 'user has not been created'
     let success = false;
@@ -103,16 +69,14 @@ router.post('/admin/add', checkIfAdmin, async (request, res) => {
 })
 
 
-
-
-router.post('/update', async (request, res) => {
-    const fileName = request.body.data.fileName
-    const name = request.body.data.name
-    const surname = request.body.data.surname
-    const sex = request.body.data.sex
-    const age = request.body.data.age
-    const address = request.body.data.address
-    const phone = request.body.data.phone
+router.post('/update', checkIfAuthenticated, async (request, res) => {
+    const fileName = request.body.id
+    const name = request.body.name
+    const surname = request.body.surname
+    const sex = request.body.sex
+    const age = request.body.age
+    const address = request.body.address
+    const phone = request.body.phone
 
     let message = 'user has not been created'
     let success = false;
@@ -138,10 +102,8 @@ router.post('/update', async (request, res) => {
     })
 })
 
-
-
-router.post('/admin/delete', checkIfAdmin, async (request, res) => {
-    const fileName = request.body.id
+router.delete('/delete/:id', checkIfAdmin, async (request, res) => {
+    const fileName = request.params.id
 
     let message = 'user has been deleted'
     let success = true;
@@ -169,7 +131,7 @@ router.post('/admin/delete', checkIfAdmin, async (request, res) => {
 })
 
 
-router.get('/admin/get-all', checkIfAdmin, async (request, res) => {
+router.get('/get-all', checkIfAdmin, async (request, res) => {
     let users = [];
     let state = true;
     await getAllFromCollection(USERS)

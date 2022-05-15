@@ -20,14 +20,14 @@ router.get('/get/:id', async (request, res) => {
     })
 })
 
-router.post('/admin/add', checkIfAdmin, async (request, res) => {
-    const password = request.body.data.password
-    const email = request.body.data.email
-    const name = request.body.data.name
-    const surname = request.body.data.surname
-    const speciality = request.body.data.speciality
-    const department = request.body.data.department
-    const about = request.body.data.about
+router.post('/add', checkIfAdmin, async (request, res) => {
+    const password = request.body.password
+    const email = request.body.email
+    const name = request.body.name
+    const surname = request.body.surname
+    const speciality = request.body.speciality
+    const department = request.body.department
+    const about = request.body.about
 
     let message = 'doctor has not been created'
     let success = false;
@@ -67,13 +67,13 @@ router.post('/admin/add', checkIfAdmin, async (request, res) => {
 })
 
 
-router.post('/admin/update', checkIfAdmin, async (request, res) => {
-    const id = request.body.data.id
-    const name = request.body.data.name
-    const surname = request.body.data.surname
-    const speciality = request.body.data.speciality
-    const department = request.body.data.department
-    const about = request.body.data.about
+router.post('/update', checkIfAdmin, async (request, res) => {
+    const id = request.body.id
+    const name = request.body.name
+    const surname = request.body.surname
+    const speciality = request.body.speciality
+    const department = request.body.department
+    const about = request.body.about
 
     let message = 'doctor has not been updated'
     let success = false;
@@ -100,8 +100,8 @@ router.post('/admin/update', checkIfAdmin, async (request, res) => {
 })
 
 
-router.post('/delete', checkIfAdmin, async (request, res) => {
-    const fileName = request.body.id
+router.delete('/delete/:id', checkIfAdmin, async (request, res) => {
+    const fileName = request.params.id
 
     let message = 'doctor has been deleted'
     let success = true;
@@ -145,24 +145,5 @@ router.get('/get-all', async (request, res) => {
         success: state
     })
 })
-
-
-router.get('/admin/get-all', checkIfAdmin, async (request, res) => {
-    let doctors = [];
-    let state = true;
-    await getAllFromCollection(DOCTORS)
-        .then((doctorsList) => {
-            doctors = doctorsList
-        })
-        .catch(() => {
-            state = false;
-        })
-
-    res.json({
-        doctors: doctors,
-        success: state
-    })
-})
-
 
 module.exports = router;
